@@ -9,7 +9,7 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := IR/Receiver.cpp IR/Transmitter.cpp
+SOURCES := IR/IR.cpp IR/Receiver.cpp IR/Transmitter.cpp
 
 # header files in this project
 HEADERS := IR/IR.hpp IR/Receiver.hpp IR/Protocols.hpp IR/Transmitter.hpp button_matrix.hpp

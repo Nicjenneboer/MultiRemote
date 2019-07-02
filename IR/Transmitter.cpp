@@ -1,21 +1,40 @@
 #include "hwlib.hpp"
 #include "Transmitter.hpp"
-#include "Protocols.hpp"
 
-void transmitter::write( bool b ){
-	if( b ){
-         // eable C match -> pin set
-         TC0->TC_CHANNEL[ 0 ].TC_CMR |= TC_CMR_ACPC_SET;         
-      } else {
-         // remove pin C match action
-         TC0->TC_CHANNEL[ 0 ].TC_CMR &= ~ ( 0x3 << 18);  
-      }
+
+void Transmitter::encode(){
+  	int tmp;
+	for(int i=0; i<2; i++){
+    	encoded_data[i] = pro_data.start[i];
+  	}
+    for(int i=0; i<=pro_data.bits; i++){
+    	tmp=i*2+2;
+    	if((code & (1 << (pro_data.bits-i-1))) != 0){
+        	encoded_data[tmp]=pro_data.l_one[0];
+        	encoded_data[tmp+1]=pro_data.l_one[1];
+      	}else{
+        	encoded_data[tmp]=pro_data.l_zero[0];
+        	encoded_data[tmp+1]=pro_data.l_zero[1];
+      	}
+    }
 }
 
-void transmitter::send(std::array< signal, 100 > encode_data){
-	for(signal x : encode_data){
-		write(x.stat);
-		hwlib::wait_us(x.ms);
+void Transmitter::send(){
+	long unsigned int us;
+	for(signal x : encoded_data){
+		if(x.ms!=0){
+		us = hwlib::now_us();
+		if(x.stat==1){
+			while(hwlib::now_us() - us < x.ms){
+				pin_out.write(1);
+				hwlib::wait_us(12);
+				pin_out.write(0);
+				hwlib::wait_us(12);
+			}
+		}else{
+			hwlib::wait_us(x.ms);
+		}
 	}
-	write(0);
+	pin_out.write(0);
+	}
 }

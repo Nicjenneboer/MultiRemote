@@ -1,6 +1,7 @@
 #ifndef PROTOCOLS_HPP
 #define PROTOCOLS_HPP
 
+#include "hwlib.hpp"
 
 struct signal{
   long unsigned int ms;
@@ -12,10 +13,17 @@ struct protocol{
 	signal start[2];
 	signal l_one[2];
 	signal l_zero[2];
-	int c_bits;
+	int bits = 0;
 	int range;
+
+friend hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs );
+
 };
 
+inline hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs ){
+   lhs << rhs.stat << "[" << rhs.ms << "] ";
+   return lhs;
+}
 
 
 const protocol sony = {
