@@ -14,6 +14,8 @@ void Receiver::detect(){
     bool tmp;
   	long unsigned int ms = hwlib::now_us();
   	long unsigned int ms_dif;
+    switches=0;
+    raw_data={};
 
     while(pin_in.read()!=0)
     {
@@ -23,7 +25,7 @@ void Receiver::detect(){
     }
     tmp = pin_in.read();
     ms=hwlib::now_us();
-    while(switches<2 || hwlib::now_us()-ms<raw_data[0].ms*2){
+    while(switches<2 || hwlib::now_us()-ms<raw_data[0].ms*3){
       	if(tmp!=pin_in.read()){
     		ms_dif=hwlib::now_us()-ms;
       		raw_data[switches]=signal{ms_dif, !tmp};
@@ -47,7 +49,6 @@ void Receiver::match(){
           			if(i<2 && !inRange(raw_data[i].ms, p.start[i].ms, p.range)){
               			tmp=false;
           			}if(i>=2){
-            			switches++;
             			for(int j=0; j<2; j++){
               				if(raw_data[i].stat==j){
                 				if(!inRange(raw_data[i].ms, p.l_one[1-j].ms, p.range) &&
@@ -63,6 +64,7 @@ void Receiver::match(){
        		pro_data=p;
        		return;
       	}
+
     }
 }
 

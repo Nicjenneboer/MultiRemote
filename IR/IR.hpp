@@ -7,7 +7,7 @@
 #include "Protocols.hpp"
 
 
-class IR : public Receiver, Transmitter {
+class IR : public Receiver, public Transmitter {
 private:
   protocol pro_data={}; 
   uint32_t code=0;
@@ -16,12 +16,11 @@ public:
       hwlib::target::pin_in pin_in, 
       hwlib::target::pin_out pin_out
     ):
-
     Receiver(pin_in, pro_data, code),
     Transmitter(pin_out, pro_data, code)
   {}
 
-  void receive(unsigned int time);
+  void receive(unsigned int time=0);
 
   void transmit();
 

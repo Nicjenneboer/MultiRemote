@@ -53,12 +53,21 @@ const protocol jvc = {
 	150
 };
 
-const protocol samsung = {
-	"SAMSUNG",
-	{{4500, 1},{4500, 0}},
-	{{550, 1},{1700, 0}},
-	{{550, 1},{550, 0}},
-	32,
+// const protocol samsung = {
+// 	"SAMSUNG",
+// 	{{4500, 1},{4500, 0}},
+// 	{{550, 1},{1700, 0}},
+// 	{{550, 1},{550, 0}},
+// 	32,
+// 	150
+// };
+
+const protocol saba = {
+	"SABA",
+	{{10300, 1},{5200, 0}},
+	{{650, 1},{650, 0}},
+	{{2000, 1},{650, 0}},
+	23,
 	150
 };
 
@@ -68,7 +77,8 @@ const std::array<protocol, 4> protocols =
 	sony,
 	nec,
 	jvc,
-	samsung
+	saba
+	//samsung
 };
 
 
