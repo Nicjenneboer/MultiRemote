@@ -1,7 +1,30 @@
-#ifndef BUTTON_MATRIX_HPP
-#define BUTTON_MATRIX_HPP
+#ifndef MULTIREMOTE_HPP
+#define MULTIREMOTE_HPP
 
 #include "IR/IR.hpp"
+
+class IR : public Receiver, public Transmitter {
+private:
+	protocol pro_data={}; 
+  	uint32_t code=0;
+public:
+  IR( 
+      hwlib::target::pin_in pin_in, 
+      hwlib::target::pin_out pin_out
+    ):
+    Receiver(pin_in, pro_data, code),
+    Transmitter(pin_out, pro_data, code)
+  {}
+
+  void receive(unsigned int time=0);
+
+  void transmit();
+
+  void clear();
+
+  void print(bool i=0);
+
+};
 
 class button : public IR{
 private:
@@ -9,7 +32,6 @@ private:
 	hwlib::target::pin_in & column;
 
 public:
-	std::array< signal, 100 > encoded_data = {};
 	button(
 		hwlib::target::pin_out & row, 
 		hwlib::target::pin_in & column,
@@ -22,21 +44,11 @@ public:
 	row( row ), column( column )
 	{}
 
-	bool read(){
-		bool tmp;
-		row.write(0);
-		row.flush();
-		tmp = column.read();
-		row.write(1);
-		row.flush();
-		return tmp;
-	}
+	bool read();
 };
-
 
 class button_matrix{
 public:
-
 	std::array< button , 16 > buttons;
 
 	button_matrix(
@@ -57,4 +69,4 @@ public:
 	} {}
 };
 
-#endif // BUTTON_MATRIX_HPP
+#endif // MULTIREMOTE

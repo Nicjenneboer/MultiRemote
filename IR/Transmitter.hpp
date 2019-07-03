@@ -3,30 +3,31 @@
 
 #include "hwlib.hpp"
 #include "Protocols.hpp"
+#include "Translate.hpp"
 
 
-class Transmitter{
+class Transmitter : public Translate{
 protected:
   hwlib::target::pin_out pin_out;
-  protocol & pro_data; 
-  uint32_t & code;
-	std::array< signal, 100 > encoded_data = {};
+  std::array< signal, max_length_signals > encoded_data;
 
 public:
   Transmitter(
     hwlib::target::pin_out pin_out,
     protocol & pro_data,
-    uint32_t & code
+    uint32_t & code,
+    std::array< signal, max_length_signals > encoded_data = {}
   ):
-    pin_out( pin_out ), pro_data( pro_data ), code( code )
+    Translate( pro_data, code ),
+    pin_out( pin_out ), encoded_data( encoded_data )
     {}
   
   void encode();
 
   void send();
 
- 
-   
+  void print();
+
 };
 
 #endif // TRANSMITTER

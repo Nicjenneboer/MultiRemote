@@ -10,10 +10,10 @@
 
 # source files in this project (main.cpp is automatically assumed)
 RELATIVE := ..
-SOURCES := ../../IR/IR.cpp ../../IR/Transmitter.cpp ../../IR/Receiver.cpp 
+SOURCES := ../../IR/Transmitter.cpp ../../IR/Receiver.cpp 
 
 # header files in this project
-HEADERS := ../../IR/IR.hpp ../../IR/Protocols.hpp ../../IR/Receiver.hpp ../../IR/Transmitter.hpp
+HEADERS := ../../IR/Protocols.hpp ../../IR/Receiver.hpp ../../IR/Transmitter.hpp ../../IR/Translate.hpp
 
 # other places to look for files for this project
 SEARCH  := 

@@ -9,10 +9,10 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := IR/IR.cpp IR/Receiver.cpp IR/Transmitter.cpp
+SOURCES := IR/Receiver.cpp IR/Transmitter.cpp MultiRemote.cpp
 
 # header files in this project
-HEADERS := IR/IR.hpp IR/Receiver.hpp IR/Protocols.hpp IR/Transmitter.hpp button_matrix.hpp
+HEADERS := IR/IR.hpp IR/Receiver.hpp IR/Protocols.hpp IR/Translate.hpp IR/Transmitter.hpp  MultiRemote.hpp
 
 # other places to look for files for this project
 SEARCH  := 

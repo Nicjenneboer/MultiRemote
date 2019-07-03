@@ -3,32 +3,32 @@
 
 #include "hwlib.hpp"
 #include "Protocols.hpp"
+#include "Translate.hpp"
 
-class Receiver{
+class Receiver : public Translate{
 protected:
   hwlib::target::pin_in pin_in;
-  protocol & pro_data; 
-  uint32_t & code;
-  std::array< signal, 100 > raw_data = {};
+  std::array< signal, max_length_signals > raw_data;
   int switches = 0;
 
 public:
   Receiver(
     hwlib::target::pin_in pin_in, 
     protocol & pro_data,
-    uint32_t & code
-  	):
-  pin_in( pin_in ),
-  pro_data( pro_data ),
-  code( code)
+    uint32_t & code,
+    std::array< signal, max_length_signals > raw_data = {0}
+  ):
+    Translate( pro_data, code ),
+    pin_in( pin_in ), raw_data( raw_data )
   {}
 
-  void detect();
+  void detect(unsigned int time = 0);
 
   void match();
 
   void decode();
 
+  void print ();
 
 };
 

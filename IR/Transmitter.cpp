@@ -1,9 +1,8 @@
-#include "hwlib.hpp"
 #include "Transmitter.hpp"
 
-
 void Transmitter::encode(){
-  	int tmp;
+	encoded_data={};
+	int tmp;
 	for(int i=0; i<2; i++){
     	encoded_data[i] = pro_data.start[i];
   	}
@@ -19,22 +18,38 @@ void Transmitter::encode(){
     }
 }
 
+
 void Transmitter::send(){
 	long unsigned int us;
 	for(signal x : encoded_data){
-		if(x.ms!=0){
+		if(x.us!=0){
 		us = hwlib::now_us();
 		if(x.stat==1){
-			while(hwlib::now_us() - us < x.ms){
+			while(hwlib::now_us() - us < x.us){
 				pin_out.write(1);
+				pin_out.flush();
 				hwlib::wait_us(12);
 				pin_out.write(0);
+				pin_out.flush();
 				hwlib::wait_us(12);
 			}
 		}else{
-			hwlib::wait_us(x.ms);
+			hwlib::wait_us(x.us);
 		}
 	}
 	pin_out.write(0);
+	pin_out.flush();
 	}
+}
+
+void Transmitter::print(){
+	if(encoded_data[0].us!=0){
+    	hwlib::cout <<"Encoded Data:\n";
+    	for(const signal & s : encoded_data){
+    		if(s.us!=0){
+          		hwlib::cout  << s;
+        	}
+      	}
+      	hwlib::cout << "\n\n";
+  	}
 }

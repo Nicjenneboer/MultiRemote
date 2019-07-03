@@ -3,10 +3,20 @@
 
 #include "hwlib.hpp"
 
+const int max_length_signals = 100;
+
 struct signal{
-  long unsigned int ms;
+  long unsigned int us;
   bool stat;
+
+  friend hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs );
+
 };
+
+inline hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs ){
+   lhs << rhs.stat << "[" << rhs.us << "] ";
+   return lhs;
+}
 
 struct protocol{
 	char name[25];
@@ -15,15 +25,7 @@ struct protocol{
 	signal l_zero[2];
 	int bits = 0;
 	int range;
-
-friend hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs );
-
 };
-
-inline hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs ){
-   lhs << rhs.stat << "[" << rhs.ms << "] ";
-   return lhs;
-}
 
 
 const protocol sony = {
@@ -53,14 +55,14 @@ const protocol jvc = {
 	150
 };
 
-// const protocol samsung = {
-// 	"SAMSUNG",
-// 	{{4500, 1},{4500, 0}},
-// 	{{550, 1},{1700, 0}},
-// 	{{550, 1},{550, 0}},
-// 	32,
-// 	150
-// };
+const protocol samsung = {
+	"SAMSUNG",
+	{{4500, 1},{4500, 0}},
+	{{550, 1},{1700, 0}},
+	{{550, 1},{550, 0}},
+	32,
+	150
+};
 
 const protocol saba = {
 	"SABA",
@@ -72,13 +74,13 @@ const protocol saba = {
 };
 
 
-const std::array<protocol, 4> protocols = 
+const std::array<protocol, 5> protocols = 
 {
 	sony,
 	nec,
 	jvc,
-	saba
-	//samsung
+	saba,
+	samsung
 };
 
 
