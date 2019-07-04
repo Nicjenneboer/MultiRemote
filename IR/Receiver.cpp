@@ -1,5 +1,16 @@
-#include "Receiver.hpp"
+// ==========================================================================
+//
+// File      : Receiver.cpp
+// Part of   : IR Library
+// Copyright : Nic Jenneboer
+//
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
 
+#include "Receiver.hpp"
 void Receiver::detect(unsigned int time){
     bool tmp;
   	long unsigned int us = hwlib::now_us();
@@ -53,7 +64,6 @@ void Receiver::match(){
        		pro_data=p;
        		return;
       	}
-
     }
 }
 

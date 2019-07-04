@@ -13,7 +13,7 @@ RELATIVE := ..
 SOURCES := ../../IR/Transmitter.cpp ../../IR/Receiver.cpp 
 
 # header files in this project
-HEADERS := ../../IR/Protocols.hpp ../../IR/Receiver.hpp ../../IR/Transmitter.hpp ../../IR/Translate.hpp
+HEADERS := ../../IR/Protocols.hpp ../../IR/Receiver.hpp ../../IR/Transmitter.hpp ../../IR/IR_Data.hpp
 
 # other places to look for files for this project
 SEARCH  := 

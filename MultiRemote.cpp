@@ -1,3 +1,15 @@
+// ==========================================================================
+//
+// File      : MultiRemote.cpp
+// Part of   : MultiRemote
+// Copyright : Nic Jenneboer
+//
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
+
 #include "MultiRemote.hpp"
 
 void IR::receive(unsigned int time){
@@ -12,32 +24,13 @@ void IR::receive(unsigned int time){
 	}
 }
 
-void IR::transmit(){
-	if(code!=0){
-		encode();
-		send();
-	}
-}
-
 void IR::clear(){
 	code=0;
 	pro_data={};
 }
 
-void IR::print(bool i){
-	if(code==0){
-		hwlib::cout << "NOT FOUND!";
-	}else{
-		for(const char & n : pro_data.name){
-			hwlib::cout << n;
-		}
-	}
-	hwlib::cout << " - " << hwlib::hex << code 
-	<< "\nLength: " << hwlib::dec << switches << "\n\n";
-	if(i==1){
-		Receiver::print();
-		Transmitter::print();
-	}
+void IR::print(){
+	Receiver::print_protocol();
 }
 
 bool button::read(){

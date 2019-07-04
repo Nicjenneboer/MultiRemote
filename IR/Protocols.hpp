@@ -1,14 +1,33 @@
+// ==========================================================================
+//
+// File      : Protocols.hpp
+// Part of   : IR Library
+// Copyright : Nic Jenneboer
+//
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
+
 #ifndef PROTOCOLS_HPP
 #define PROTOCOLS_HPP
 
 #include "hwlib.hpp"
+/// @file
 
+/// \brief
+/// The max length for signal data in a array.
 const int max_length_signals = 100;
 
 struct signal{
   long unsigned int us;
   bool stat;
 
+   /// \brief
+   /// output operator for a signal.
+   /// \details
+   /// This operator<< prints a signal in the format: stat[us]
   friend hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs );
 
 };
@@ -17,6 +36,19 @@ inline hwlib::ostream & operator<<( hwlib::ostream & lhs, const signal & rhs ){
    lhs << rhs.stat << "[" << rhs.us << "] ";
    return lhs;
 }
+
+/// \brief
+/// Struct for define a protocol
+/// \details
+/// Protocol template:\n\n
+/// const protocol [NAME] = {\n
+/// &nbsp;&nbsp;&nbsp;&nbsp;"[NAME]",\n
+/// &nbsp;&nbsp;&nbsp;&nbsp;{{[START_US], [START_STATE]},{[START_US], [START_STATE]}},\n
+/// &nbsp;&nbsp;&nbsp;&nbsp;{{[ONE_US], [ONE_STATE]},{[ONE_US], [ONE_STATE]}},\n
+/// &nbsp;&nbsp;&nbsp;&nbsp;{{[ZERO_US], [ZERO_STATE]},{[ZERO_US], [ZERO_STATE]}},\n
+/// &nbsp;&nbsp;&nbsp;&nbsp;[BITS],\n
+/// &nbsp;&nbsp;&nbsp;&nbsp;[RANGE]\n
+/// };
 
 struct protocol{
 	char name[25];
@@ -73,7 +105,9 @@ const protocol saba = {
 	150
 };
 
-
+/// \brief
+/// Array of all protocols.\n
+/// Used in Receiver::match() function.
 const std::array<protocol, 5> protocols = 
 {
 	sony,

@@ -1,3 +1,15 @@
+// ==========================================================================
+//
+// File      : MultiRemote.hpp
+// Part of   : MultiRemote
+// Copyright : Nic Jenneboer
+//
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
+
 #ifndef MULTIREMOTE_HPP
 #define MULTIREMOTE_HPP
 
@@ -18,11 +30,9 @@ public:
 
   void receive(unsigned int time=0);
 
-  void transmit();
-
   void clear();
 
-  void print(bool i=0);
+  void print();
 
 };
 

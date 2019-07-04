@@ -12,6 +12,8 @@ int main( void ){
 	Receiver rec(rec_p, prot, code);
 	Transmitter trans(trans_p, prot, code);
 
+	protocol tmp;
+
 	for(;;){
 		hwlib::wait_ms(100);
 		rec.detect();
@@ -21,6 +23,13 @@ int main( void ){
 		rec.print_protocol();
 		rec.print();
 		trans.print();
+		tmp = rec.get_protocol();
+		if(tmp.bits!=0){
+			hwlib::cout << "Start: " << tmp.start[0] << tmp.start[1]
+						<< "\nOne  : " << tmp.l_one[0] << tmp.l_one[1]
+						<< "\nZero : " << tmp.l_zero[0] << tmp.l_zero[1]
+						<< "\n\n";
+		}
 		prot={};
 		code={};
 	}

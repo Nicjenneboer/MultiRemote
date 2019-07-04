@@ -12,7 +12,7 @@
 SOURCES := IR/Receiver.cpp IR/Transmitter.cpp MultiRemote.cpp
 
 # header files in this project
-HEADERS := IR/IR.hpp IR/Receiver.hpp IR/Protocols.hpp IR/Translate.hpp IR/Transmitter.hpp  MultiRemote.hpp
+HEADERS := IR/IR.hpp IR/Receiver.hpp IR/Protocols.hpp IR/IR_Data.hpp IR/Transmitter.hpp  MultiRemote.hpp
 
 # other places to look for files for this project
 SEARCH  := 
