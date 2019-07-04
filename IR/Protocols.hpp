@@ -2,7 +2,7 @@
 //
 // File      : Protocols.hpp
 // Part of   : IR Library
-// Copyright : Nic Jenneboer
+// Copyright : Nic Jenneboer  Mail : Nicjenneboer@gmail.com
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at 
@@ -87,21 +87,21 @@ const protocol jvc = {
 	150
 };
 
-const protocol samsung = {
-	"SAMSUNG",
-	{{4500, 1},{4500, 0}},
-	{{550, 1},{1700, 0}},
-	{{550, 1},{550, 0}},
-	32,
-	150
-};
-
 const protocol saba = {
 	"SABA",
 	{{10300, 1},{5200, 0}},
 	{{650, 1},{650, 0}},
 	{{2000, 1},{650, 0}},
 	23,
+	250
+};
+
+const protocol samsung = {
+	"SAMSUNG",
+	{{4500, 1},{4500, 0}},
+	{{550, 1},{1700, 0}},
+	{{550, 1},{550, 0}},
+	32,
 	150
 };
 

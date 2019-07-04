@@ -10,9 +10,9 @@
 
 # the location of the ti software directory
 ifeq ($(OS),Windows_NT)
-   TI-SOFTWARE       := $(realpath .)
+   TI-SOFTWARE       := .
 else
-   TI-SOFTWARE       := $(realpath .)
+   TI-SOFTWARE       := .
 endif   
 
 # include hwlib
