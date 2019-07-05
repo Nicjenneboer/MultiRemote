@@ -15,7 +15,6 @@
 #include "MultiRemote.hpp"
 
 int main(void){
-
 	
 	//Enable pins input or output
 	auto led = hwlib::target::pin_out(hwlib::target::pins::d44);
@@ -32,7 +31,7 @@ int main(void){
 	auto c2 = hwlib::target::pin_in(hwlib::target::pins::d52);
 	auto c3 = hwlib::target::pin_in(hwlib::target::pins::d53);
 
-	//Button pins 8x8 matrix setup
+	//Button pins 4x4 matrix setup
 	std::array< hwlib::target::pin_out, 4 > rows = {r0, r1, r2, r3};
 	std::array< hwlib::target::pin_in, 4 > columns= {c0, c1, c2, c3};
 
@@ -44,10 +43,10 @@ int main(void){
 
 	for(;;){
 		for(button & b : matrix.buttons){
-			//If button is pressed send decoded IR signal
 			if(b.read()==0){
 				us=hwlib::now_us();
 				while(b.read()==0){
+					//If button is pressed send decoded IR signal
 					b.send();
 					hwlib::wait_ms(50);
 					//If button is pressed for x seconds

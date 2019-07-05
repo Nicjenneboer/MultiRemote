@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['get_5fcode',['get_code',['../class_i_r___data.html#aa13badae3d7eaf7401537e1ac499e0db',1,'IR_Data']]],
-  ['get_5fprotocol',['get_protocol',['../class_i_r___data.html#a0b27fa33c33e186c1c360d1f510e2189',1,'IR_Data']]]
+  ['get_5fencoded_5fdata',['get_encoded_data',['../class_transmitter.html#a3a72b076ac514704eaca03c5c5eb4050',1,'Transmitter']]],
+  ['get_5fraw_5fdata',['get_raw_data',['../class_receiver.html#adef309a3f44ab6c420d37e97c2dd2ead',1,'Receiver']]]
 ];

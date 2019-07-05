@@ -67,6 +67,9 @@ public:
 /// If it's true, a one will be set in the decode code, else an zero.
   void decode();
 
+/// \brief
+/// Return raw_data
+  std::array< signal, max_length_signals > get_raw_data(){return raw_data;}
 
 /// \biref
 /// Print the raw_data array.

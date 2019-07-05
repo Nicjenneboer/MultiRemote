@@ -38,18 +38,6 @@ public:
     {}
 
 /// \brief
-/// returned the stored protocol.
-    protocol get_protocol(){
-    	return pro_data;
-    }
-
-/// \brief
-/// returned the stored 32 bit code.
-    uint32_t get_code(){
-    	return code;
-    }
-
-/// \brief
 /// Print the name of the Protocol and the 32 bit code.
     void print_protocol(){
     	if(code!=0){

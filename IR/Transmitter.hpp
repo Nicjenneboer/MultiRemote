@@ -59,6 +59,10 @@ public:
   void send();
 
 /// \brief
+/// Return encoded_data
+  std::array< signal, max_length_signals > get_encoded_data(){return encoded_data;}
+
+/// \brief
 /// Print the encoded_data array.
   void print();
 
